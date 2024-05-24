@@ -16,14 +16,14 @@ const Search = () => {
 
                 const charactersWithImages = await Promise.all(
                     characters.map(async (character) => {
-                      const detailResponse = await axios.get(character.url);
-                      return {
-                        name: character.name,
-                        imageUrl: detailResponse.data.sprites.front_default,
-                      };
+                        const detailResponse = await axios.get(character.url);
+                        return {
+                            name: character.name,
+                            imageUrl: detailResponse.data.sprites.front_default,
+                        };
                     })
-                  );
-                
+                );
+
                 setCharacters(charactersWithImages);
             } catch (error) {
                 console.error('Error fetching characters:', error);
@@ -34,18 +34,19 @@ const Search = () => {
 
     const searchPokemon = (e) => {
         const searchValue = e.target.value;
-        setPokemon(characters.filter((character) => character.name.toLowerCase().includes(searchValue)));
+        setPokemon(characters.filter((character) => character.name.toLowerCase().includes(searchValue.toLowerCase())));
     };
 
 
     return (
         <form>
-            <span>Pokemon :</span>
-            <input type="text" name="name" id="name" onChange={searchPokemon} />
+            <div className='inicio'>
+                <input type="text" name="name" id="name" onChange={searchPokemon} placeholder='pokemon'/>
+            </div>
             <div>{pokemon.map((poke, index) => (
                 <p key={index}>
                     {poke.name}
-                    <img src={poke.imageUrl}/>
+                    <img src={poke.imageUrl} />
                 </p>
             ))}</div>
         </form>

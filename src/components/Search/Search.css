@@ -1,8 +1,6 @@
-input {
-    top: 0;
+.inicio{
+    position: fixed;
+    top :0;
     margin-left: 40%;
-}
-span {
-    top: 0;
-    margin-left: 40%;
+    margin-top: 20px;
 }
